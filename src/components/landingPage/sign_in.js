@@ -3,36 +3,42 @@ import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-class SignIn extends Component {
-
-    renderField(field){
-        const { meta: { touched, error } } = field;
-        const className = `form-group ${touched && error ? 'has-danger': ''}`
-        return (
-            <div className={className}>
-                <label>{field.label}</label>
+function renderField(field) {
+    const { meta: { touched, error } } = field;
+    const className = `form-group ${touched && error ? 'has-danger': ''}`;
+    const fieldClass = `form-control ${field.label}`;
+    return (
+        <div className={className}>
+            <label htmlFor={fieldClass}>{field.label}
                 <input
-                    className="form-control"
+                    className={fieldClass}
                     type="text"
                     {...field.input}
                 />
-                <div className="text-help">
-                {touched ? error : ''}
-                </div>
+            </label>
+                {field.label}
+
+            <div className="text-help">
+            {touched ? error : ''}
             </div>
-        )
+        </div>
+    );
+}
+
+class SignIn extends Component {
+    constructor() {
+        super();
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.renderField = renderField.bind(this);
     }
 
-    onSubmit(){
-
+    handleSubmit() {
+        this.setState();
     }
 
     render() {
-
-        const { handleSubmit } = this.props;        
-
         return (
-            <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+            <form className="sign-in" onSubmit={this.handleSubmit}>
                 <Field
                     label="Username"
                     name="username"
@@ -43,36 +49,36 @@ class SignIn extends Component {
                     name="password"
                     component={this.renderField}
                 />
-                <Link to="/home" className="btn btn-primary">SignIn</Link>
-                <Link to="/" className="btn btn-danger">Cancel</Link>
+                <Link href="/home" to="/home" className="btn btn-primary">SignIn</Link>
+                <Link href="/" to="/" className="btn btn-danger">Cancel</Link>
             </form>
         );
     }
 }
 
-function validate(values){
+function validate(values) {
     const errors = {};
 
     // validate the inputs from 'values'
     // if(values.title.length < 3){
     //     errors.title = 'Title must be at least 3 characters'
     // }
-    if(!values.title){
+    if (!values.title) {
         errors.title='Enter a Username';
     }
-    if(!values.categories){
+    if (!values.categories) {
         errors.categories = 'Enter a Password';
     }
 
 
-//If errors is empty, the form is fine ot submit
-//If errors has *any* properties, redux form assumes form is invalid
+// If errors is empty, the form is fine ot submit
+// If errors has *any* properties, redux form assumes form is invalid
     return errors;
 }
 
 export default reduxForm({
     validate,
-    form: 'SignIn'
+    form: 'SignIn',
 })(
-    connect(null, {})(SignIn)
+    connect()(SignIn),
 );

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Events from '../eventList/event_details';
+import EventDetails from '../eventList/event_details';
 
     // const eventItems = props.events.map(Event => {
     //     return(
@@ -17,7 +17,7 @@ import Events from '../eventList/event_details';
     //     )
     // });
 
-class EventList extends Component {
+function EventList() {
     // constructor () {
     //     super()
     //     this.state = {
@@ -28,15 +28,12 @@ class EventList extends Component {
     // componentDidMount(){
     //     const eventCheck = Events ? this.setState({noEvents: false}) : this.setState({noEvents:true});
     // }
-  
-    
-    render(){
-        return(
-            <div>
-               <Events/>
-            </div>
+
+    return (
+        <div>
+            <EventDetails />
+        </div>
         );
-    }
 }
 
 export default EventList;
