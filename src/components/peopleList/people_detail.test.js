@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+import Adapter from 'enzyme-adapter-react-16';
+=======
+>>>>>>> 19a10162e4313430e9f86618e60c1b7f6f5bc901
 import React from 'react';
 import { shallow, mount, render } from 'enzyme';
 import PeopleDetail from "./people_detail";
