@@ -17,7 +17,7 @@ class HomePage extends Component {
         const toBeVisible = e.target.id;
         const States = ["event", "people", "profile"];
         States.forEach((x) => {
-            (x===toBeVisible)? this.setState({ [x]: false }) : this.setState({ [x]: true });
+           return (x===toBeVisible)? this.setState({ [x]: false }) : this.setState({ [x]: true });
         });
     }
 
@@ -49,11 +49,12 @@ class HomePage extends Component {
                     >
                         Profile
                     </button>
-                    <div>
-                        {!this.state.event && <EventsList />}
-                        {!this.state.people && <PeopleList />}
-                        {!this.state.profile && <Profile />}
-                    </div>
+                   
+                </div>
+                <div>
+                    {!this.state.event && <EventsList />}
+                    {!this.state.people && <PeopleList />}
+                    {!this.state.profile && <Profile />}
                 </div>
             </div>
         );
