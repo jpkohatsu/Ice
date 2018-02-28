@@ -1,39 +1,56 @@
 import React, { Component } from 'react';
 import EventDetails from '../eventList/event_details';
+import EventsAttending from '../eventList/events_attending';
 
-    // const eventItems = props.events.map(Event => {
-    //     return(
-    //         <div>
-    //         {!this.state.noEvents &&  <EventListItem/>: "No events currently scheduled"}
-    //        </div>
-    //     )
-    // });
+class EventList extends Component {
+    constructor() {
+        super();
+        this.showEventDetails = this.showEventDetails.bind(this);
+        this.showEventsAttending = this.showEventsAttending.bind(this);
+        this.state = {
+            eventDetailsHidden: true,
+            eventsAttendingHidden: true,
+        };
+    }
 
-    // const eventItems = props.Events.map(Event => {
-    //     return(
-    //         <div>
-    //         <Events/>
-    //        </div>
-    //     )
-    // });
+    showEventDetails() {
+        this.setState({
+            eventDetailsHidden: !this.state.eventDetailsHidden,
+            eventsAttendingHidden: true,
+        });
+    }
 
-function EventList() {
-    // constructor () {
-    //     super()
-    //     this.state = {
-    //         noEvents: true
-    //     }
-    // }
+    showEventsAttending() {
+        this.setState({
+            eventDetailsHidden: true,
+            eventsAttendingHidden: !this.state.eventsAttendingHidden,
+        });
+    }
 
-    // componentDidMount(){
-    //     const eventCheck = Events ? this.setState({noEvents: false}) : this.setState({noEvents:true});
-    // }
-
-    return (
-        <div>
-            <EventDetails />
-        </div>
+    render() {
+        return (
+            <div>
+                <div className="row btn-group d-flex">
+                    <button
+                        className="btn btn-primary col-md-6"
+                        onClick={this.showEventDetails}
+                    >
+                        Events List
+                    </button>
+                    <button
+                        className="btn btn-primary col-md-6"
+                        onClick={this.showEventsAttending}
+                    >
+                        Events Im Attending
+                    </button>
+                    <div>
+                        {!this.state.eventDetailsHidden && <EventDetails />}
+                        {!this.state.eventsAttendingHidden && <EventsAttending />}
+                    </div>
+                </div>
+            </div>
         );
+    }
 }
 
 export default EventList;

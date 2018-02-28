@@ -65,11 +65,12 @@ class HomePage extends Component {
                     >
                         Profile
                     </button>
-                    <div>
-                        {!this.state.eventListHidden && <EventsList />}
-                        {!this.state.peopleListHidden && <PeopleList />}
-                        {!this.state.profileHidden && <Profile />}
-                    </div>
+
+                </div>
+                <div>
+                    {!this.state.eventListHidden && <EventsList />}
+                    {!this.state.peopleListHidden && <PeopleList />}
+                    {!this.state.profileHidden && <Profile />}
                 </div>
             </div>
         );
