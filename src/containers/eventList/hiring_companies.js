@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-class Attendees extends Component {
+class HiringCompany extends Component {
           render(){
                     return(
                               <div>
-                                        Google
+                                        Company: Google
                               </div>
                     );
           }
 }
-export default Attendees;
+export default HiringCompany;
