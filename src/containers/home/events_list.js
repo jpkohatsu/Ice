@@ -5,26 +5,17 @@ import EventsAttending from '../eventList/events_attending';
 class EventList extends Component {
     constructor() {
         super();
-        this.showEventDetails = this.showEventDetails.bind(this);
-        this.showEventsAttending = this.showEventsAttending.bind(this);
+        this.showHidden = this.showHidden.bind(this);
         this.state = {
-            eventDetailsHidden: true,
-            eventsAttendingHidden: true,
+            eventDetails: true,
+            eventsAttending: true,
         };
     }
 
-    showEventDetails() {
-        this.setState({
-            eventDetailsHidden: !this.state.eventDetailsHidden,
-            eventsAttendingHidden: true,
-        });
-    }
-
-    showEventsAttending() {
-        this.setState({
-            eventDetailsHidden: true,
-            eventsAttendingHidden: !this.state.eventsAttendingHidden,
-        });
+    showHidden(e) {
+        const toBeVisible = e.target.id;
+        const tabs = ["eventDetails", "eventsAttending"];
+        tabs.forEach(x => ((x===toBeVisible)? this.setState({ [x]: false }) : this.setState({ [x]: true })));
     }
 
     render() {
@@ -32,20 +23,22 @@ class EventList extends Component {
             <div>
                 <div className="row btn-group d-flex">
                     <button
+                        id="eventDetails"
                         className="btn btn-primary col-md-6"
-                        onClick={this.showEventDetails}
+                        onClick={this.showHidden}
                     >
                         Events List
                     </button>
                     <button
+                        id="eventsAttending"
                         className="btn btn-primary col-md-6"
-                        onClick={this.showEventsAttending}
+                        onClick={this.showHidden}
                     >
                         Events Im Attending
                     </button>
                     <div>
-                        {!this.state.eventDetailsHidden && <EventDetails />}
-                        {!this.state.eventsAttendingHidden && <EventsAttending />}
+                        {!this.state.eventDetails && <EventDetails />}
+                        {!this.state.eventsAttending && <EventsAttending />}
                     </div>
                 </div>
             </div>

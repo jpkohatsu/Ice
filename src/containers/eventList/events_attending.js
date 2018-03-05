@@ -1,10 +1,23 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Event from './event';
 
-export default function EventsAttending() {
-    return (
-        <div>
-            <Event />
-        </div>
-    );
+class EventsAttending extends Component {
+    constructor() {
+        super();
+        this.state = {
+            title: "Super Sweet Dance Party",
+            image: "",
+            eventDate: "Wed, Febuary 28, 4pm",
+            eventLocation: "The Highball, Austin",
+        };
+    }
+    render() {
+        return (
+            <div>
+                <Event card={this.state} />
+            </div>
+        );
+    }
 }
+
+export default EventsAttending;

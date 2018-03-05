@@ -15,10 +15,8 @@ class HomePage extends Component {
     }
     showHidden(e) {
         const toBeVisible = e.target.id;
-        const States = ["event", "people", "profile"];
-        States.forEach((x) => {
-           return (x===toBeVisible)? this.setState({ [x]: false }) : this.setState({ [x]: true });
-        });
+        const tabs = ["event", "people", "profile"];
+        tabs.forEach(x => ((x===toBeVisible)? this.setState({ [x]: false }) : this.setState({ [x]: true })));
     }
 
     render() {
@@ -49,7 +47,6 @@ class HomePage extends Component {
                     >
                         Profile
                     </button>
-                   
                 </div>
                 <div>
                     {!this.state.event && <EventsList />}
