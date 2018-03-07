@@ -49,7 +49,7 @@ class SignIn extends Component {
                     name="password"
                     component={this.renderField}
                 />
-                <Link href="/home" to="/home" className="btn btn-primary">SignIn</Link>
+                <Link href="/home" to="/home" className="btn btn-primary x">SignIn</Link>
                 <Link href="/" to="/" className="btn btn-danger">Cancel</Link>
             </form>
         );
